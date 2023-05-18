@@ -28,7 +28,7 @@ RUN wget -P /tmp -c dl.k8s.io/${k8s}/bin/linux/${ARCH}/kubectl https://get.helm.
     tar zxfv /tmp/docker-${docker}.tgz -C /usr/local/bin/ --strip-components=1 ; \
     tar zxfv /tmp/docker-rootless-extras-${docker}.tgz -C /usr/local/bin/ --strip-components=1 ; \
     tar zxfv nerdctl-full-${nerdctl}-linux-${ARCH}.tar.gz -C /usr/local/  ; \
-    kubectl version;  helm version;nerdctl version;docker version;
+    kubectl version;  helm version;nerdctl version;docker version; \
     rm -rf /tmp/* /var/cache/apk/*;
     
 
