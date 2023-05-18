@@ -15,10 +15,10 @@ RUN set -eux; addgroup -g 8080 app ; adduser -u 8080 -S -G app -s /bin/bash app 
         s390x) ARCH=s390x; ;; \
         *) echo "un-supported arch, exit ..."; exit 1; ;; \
     esac && \
-    echo ${ARCH} ;\
+    echo ${ARCH} ; export ARCH ;\
     sed -i 's/dl-cdn.alpinelinux.org/mirrors.cloud.tencent.com/g' /etc/apk/repositories ;\
-    apk add --no-cache bash busybox-extras ca-certificates curl wget iproute2 iputils tzdata tmux ttf-dejavu tcpdump ;\
-    wget -P /tmp -c dl.k8s.io/${k8s}/bin/linux/${ARCH}/kubectl https://get.helm.sh/helm-${helm}-linux-${ARCH}.tar.gz \
+    #apk add --no-cache bash busybox-extras ca-certificates curl wget iproute2 iputils tzdata tmux ttf-dejavu tcpdump ;\
+    wget -P /tmp -q -c dl.k8s.io/${k8s}/bin/linux/${ARCH}/kubectl https://get.helm.sh/helm-${helm}-linux-${ARCH}.tar.gz \
     https://github.com/containerd/nerdctl/releases/download/v${nerdctl}/nerdctl-full-${nerdctl}-linux-${ARCH}.tar.gz \
     http://mirrors.aliyun.com/docker-ce/linux/static/stable/$(uname -m)/docker-${docker}.tgz \
     http://mirrors.aliyun.com/docker-ce/linux/static/stable/$(uname -m)/docker-rootless-extras-${docker}.tgz ;\
