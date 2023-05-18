@@ -17,7 +17,7 @@ RUN set -eux; addgroup -g 8080 app ; adduser -u 8080 -S -G app -s /bin/bash app 
     esac && \
     echo ${ARCH} ; export ARCH ;\
     sed -i 's/dl-cdn.alpinelinux.org/mirrors.cloud.tencent.com/g' /etc/apk/repositories ;\
-    #apk add --no-cache bash busybox-extras ca-certificates curl wget iproute2 iputils tzdata tmux ttf-dejavu tcpdump ;\
+    apk add --no-cache bash busybox-extras ca-certificates curl wget iproute2 iputils tzdata tmux ttf-dejavu tcpdump ;\
     wget -P /tmp -q -c dl.k8s.io/${k8s}/bin/linux/${ARCH}/kubectl https://get.helm.sh/helm-${helm}-linux-${ARCH}.tar.gz \
     https://github.com/containerd/nerdctl/releases/download/v${nerdctl}/nerdctl-full-${nerdctl}-linux-${ARCH}.tar.gz \
     http://mirrors.aliyun.com/docker-ce/linux/static/stable/$(uname -m)/docker-${docker}.tgz \
@@ -27,7 +27,7 @@ RUN set -eux; addgroup -g 8080 app ; adduser -u 8080 -S -G app -s /bin/bash app 
     tar zxfv /tmp/docker-${docker}.tgz -C /usr/local/bin/ --strip-components=1 ; \
     tar zxfv /tmp/docker-rootless-extras-${docker}.tgz -C /usr/local/bin/ --strip-components=1 ; \
     tar zxfv /tmp/nerdctl-full-${nerdctl}-linux-${ARCH}.tar.gz -C /usr/local/  ; \
-    kubectl version;  helm version;nerdctl version;docker version; \
+    kubectl version || true;  helm version|| true; nerdctl version|| true;docker version|| true; \
     rm -rf /tmp/* /var/cache/apk/*;
     
 
