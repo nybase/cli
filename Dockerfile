@@ -22,7 +22,7 @@ RUN set -eux; addgroup -g 8080 app ; adduser -u 8080 -S -G app -s /bin/bash app 
     https://github.com/containerd/nerdctl/releases/download/v${nerdctl}/nerdctl-full-${nerdctl}-linux-${ARCH}.tar.gz \
     http://mirrors.aliyun.com/docker-ce/linux/static/stable/$(uname -m)/docker-${docker}.tgz \
     http://mirrors.aliyun.com/docker-ce/linux/static/stable/$(uname -m)/docker-rootless-extras-${docker}.tgz ;\
-    cp /tmp/kubectl /usr/local/bin/ ; chmod 755 /usr/local/bin/kubectl ;\
+    cp /tmp/kubectl /usr/local/bin/ ; chmod 755 /usr/local/bin/kubectl ; ls -alh /tmp;\
     tar zxfv /tmp/helm-${helm}-linux-${ARCH}.tar.gz -C /usr/local/bin/  --strip-components=1 ; \
     tar zxfv /tmp/docker-${docker}.tgz -C /usr/local/bin/ --strip-components=1 ; \
     tar zxfv /tmp/docker-rootless-extras-${docker}.tgz -C /usr/local/bin/ --strip-components=1 ; \
