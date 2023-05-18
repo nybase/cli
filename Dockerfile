@@ -1,5 +1,5 @@
 
-FROM alpine:stable
+FROM alpine:3
 
 ENV TZ=Asia/Shanghai LANG=en_US.UTF-8 LANGUAGE=en_US:en LC_ALL=en_US.UTF-8 UMASK=0022
 ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
