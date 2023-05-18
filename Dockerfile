@@ -26,7 +26,7 @@ RUN set -eux; addgroup -g 8080 app ; adduser -u 8080 -S -G app -s /bin/bash app 
     tar zxfv /tmp/helm-${helm}-linux-${ARCH}.tar.gz -C /usr/local/bin/  --strip-components=1 ; \
     tar zxfv /tmp/docker-${docker}.tgz -C /usr/local/bin/ --strip-components=1 ; \
     tar zxfv /tmp/docker-rootless-extras-${docker}.tgz -C /usr/local/bin/ --strip-components=1 ; \
-    tar zxfv nerdctl-full-${nerdctl}-linux-${ARCH}.tar.gz -C /usr/local/  ; \
+    tar zxfv /tmp/nerdctl-full-${nerdctl}-linux-${ARCH}.tar.gz -C /usr/local/  ; \
     kubectl version;  helm version;nerdctl version;docker version; \
     rm -rf /tmp/* /var/cache/apk/*;
     
