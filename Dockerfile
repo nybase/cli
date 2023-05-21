@@ -21,14 +21,16 @@ RUN set -eux; addgroup -g 8080 app ; adduser -u 8080 -S -G app -s /bin/bash app 
     wget -P /tmp -q -c dl.k8s.io/${k8s}/bin/linux/${ARCH}/kubectl https://get.helm.sh/helm-${helm}-linux-${ARCH}.tar.gz \
     https://github.com/containerd/nerdctl/releases/download/v${nerdctl}/nerdctl-full-${nerdctl}-linux-${ARCH}.tar.gz \
     http://mirrors.aliyun.com/docker-ce/linux/static/stable/$(uname -m)/docker-${docker}.tgz \
-    http://mirrors.aliyun.com/docker-ce/linux/static/stable/$(uname -m)/docker-rootless-extras-${docker}.tgz ;\
-    https://github.com/kubernetes-sigs/cri-tools/releases/download/$crictl/crictl-${crictl}-linux-${ARCH}.tar.gz \
+    http://mirrors.aliyun.com/docker-ce/linux/static/stable/$(uname -m)/docker-rootless-extras-${docker}.tgz \
+    https://github.com/kubernetes-sigs/cri-tools/releases/download/$crictl/crictl-${crictl}-linux-${ARCH}.tar.gz ;\
     cp /tmp/kubectl /usr/local/bin/ ; chmod 755 /usr/local/bin/kubectl ; ls -alh /tmp;\
     tar zxfv /tmp/helm-${helm}-linux-${ARCH}.tar.gz -C /usr/local/bin/  --strip-components=1 ; \
     tar zxfv /tmp/docker-${docker}.tgz -C /usr/local/bin/ --strip-components=1 ; \
     tar zxfv /tmp/docker-rootless-extras-${docker}.tgz -C /usr/local/bin/ --strip-components=1 ; \
     tar zxfv /tmp/nerdctl-full-${nerdctl}-linux-${ARCH}.tar.gz -C /usr/local/  ; \
+    tar zxfv /tmp/crictl-${crictl}-linux-*.tar.gz -C /usr/local/bin/ ;\
     kubectl version || true;  helm version|| true; nerdctl version|| true;docker version|| true; \
+    cd /usr/local/bin/; rm -rf ipfs dockerd containerd* buildkitd vpnkit bypass4netns* /usr/local/libexec/cni \
     rm -rf /tmp/* /var/cache/apk/*;
     
 
